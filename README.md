@@ -30,6 +30,24 @@ pip install -r requirements.txt
 
 You can find the data here:  [Spikenet-2](https://bdsp.io/content/spikenet/2.0/)
 
+## Model weights
+
+The trained model checkpoints are hosted with the dataset on S3 (credentialed access via the bdsp.io project above):
+
+```
+s3://bdsp-opendata-restricted/spikenet2/Models/new_weights.ckpt                     # final model
+s3://bdsp-opendata-restricted/spikenet2/Models/1s-round11-hardmine-chan_weights-v1.ckpt
+```
+
+Download `new_weights.ckpt` and point the checkpoint path in the prediction/localization notebooks at it. (Weights are not committed to git.)
+
+## Reproduce
+
+See [`REPRODUCE.md`](REPRODUCE.md) and [`DATA_SOURCE.md`](DATA_SOURCE.md).
+
+- **Localization figure/results — no download needed (verified 2026-07-07).** `2_localization.ipynb` regenerates the spike-localization figure and per-class AUCs (0.91 / 0.85 / 0.83 / 0.81) directly from the committed `conbine_localization_predictions.csv`.
+- **Full pipeline (detection figures, e.g. ROC):** download the EEG data + `new_weights.ckpt`, run `1_calculate_local_predictions.ipynb` / `prediction.ipynb` → `predictions.csv` → figures.
+
 ## Preparation
 
 First, you need to download the EEG data above. Then run the jupyter notebook to transfer the '.mat' files into '.npy' files.

@@ -1,0 +1,6 @@
+
+# Model weights live on S3 (see README) — never commit the .ckpt
+*.ckpt
+__pycache__/
+.ipynb_checkpoints/
+predictions.csv
